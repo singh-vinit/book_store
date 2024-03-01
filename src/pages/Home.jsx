@@ -21,7 +21,7 @@ const Home = () => {
     <>
       <div className="flex justify-center py-2 px-1">
         <div className="basis-1/4"></div>
-        <h1 className="capitalize font-semibold text-lg basis-1/2 text-center">{`Hello vinit`}</h1>
+        <h1 className="capitalize font-semibold text-lg basis-1/2 text-center">Hello</h1>
         <button className="cursor-pointer basis-1/4" onClick={handleOpen}>
           <MdOutlineAddBox className="text-blue-400 text-3xl ml-auto hover:rotate-45 transition ease-in-out" />
         </button>

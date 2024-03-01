@@ -8,20 +8,20 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  function handleSubmit(event) {
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    axios
-      .post(
-        "http://localhost:4000/api/v1/user/register",
-        { name, email, password },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res);
-        navigate("/");
-      })
-      .catch((err) => alert(err));
+    const newUser = { name, email, password };
+    const res = await axios.post(
+      "http://localhost:4000/api/v1/user/signup",
+      newUser,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(res);
   }
+
   return (
     <>
       <form
@@ -55,7 +55,7 @@ const SignUp = () => {
           <input
             type="email"
             className="block w-full rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
@@ -69,7 +69,7 @@ const SignUp = () => {
           <input
             type="password"
             className="block w-full rounded-md py-1.5 px-2 ring-1 ring-inset ring-gray-400 focus:text-gray-800"
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <button

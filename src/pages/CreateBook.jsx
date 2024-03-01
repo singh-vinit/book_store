@@ -19,7 +19,7 @@ const CreateBook = ({ handleIsActive }) => {
       description,
     };
     axios
-      .post("http://localhost:4000/api/books/new", data)
+      .post("http://localhost:4000/api/v1/books/new", data)
       .then(() => {
         alert("created successful");
         navigate("/");
@@ -90,7 +90,7 @@ const CreateBook = ({ handleIsActive }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <button className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-rose-500 group mt-2">
+      <button className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-rose-500 group mt-2" type="submit">
         <span className="relative z-10 text-rose-500 group-hover:text-white text-xl duration-500">
           create
         </span>
