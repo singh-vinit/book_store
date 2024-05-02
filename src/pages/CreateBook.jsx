@@ -2,42 +2,38 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoMdClose } from "react-icons/io";
 
-const CreateBook = ({ handleIsActive }) => {
+const CreateBook = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [description, setDescription] = useState("");
-  const navigate = useNavigate();
 
-  function handleSubmit() {
+  async function submitHandler(event) {
+    event.preventDefault();
     const data = {
       title,
       author,
       publishYear,
       description,
     };
-    axios
-      .post("http://localhost:4000/api/v1/books/new", data)
-      .then(() => {
-        alert("created successful");
-        navigate("/");
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    try {
+      const res = await axios.post(
+        "https://api-book-store-9spu.onrender.com/api/v1/books/new",
+        data
+      );
+      console.log(res);
+      alert("book created successfully!");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <form
       className="flex flex-col p-3 w-1/3 my-8 mx-auto border gap-y-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]"
-      onSubmit={handleSubmit}
+      onSubmit={submitHandler}
     >
-      <button onClick={() => handleIsActive(false)}>
-        <IoMdClose className="ml-auto hover:rotate-45 transition ease-in-out" />
-      </button>
-
       <div className="w-full">
         <label htmlFor="" className="block text-gray-800 font-semibold text-sm">
           Title
@@ -90,7 +86,10 @@ const CreateBook = ({ handleIsActive }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
       </div>
-      <button className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-rose-500 group mt-2" type="submit">
+      <button
+        className="cursor-pointer font-semibold overflow-hidden relative z-100 border border-rose-500 group mt-2"
+        type="submit"
+      >
         <span className="relative z-10 text-rose-500 group-hover:text-white text-xl duration-500">
           create
         </span>

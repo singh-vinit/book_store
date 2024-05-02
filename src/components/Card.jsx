@@ -6,12 +6,16 @@ import { Link } from "react-router-dom";
 const Card = ({ title, author, publishYear, description, id }) => {
   return (
     <div className="flex flex-col bg-white h-max rounded-md py-3 px-2 border-2">
-      <h3 className="text-center font-bold text-xl text-gray-800 pb-2">
+      <h3 className="text-center capitalize font-bold text-xl text-gray-800 pb-2 font-mono">
         {title}
       </h3>
-      <h3 className="text-sm font-semibold text-gray-900">{author}</h3>
-      <p className="text-xs text-gray-500 pb-2">{description}</p>
-      <div className="flex gap-1 text-xs text-gray-500 border-b pb-2">
+      <h3 className="text-sm capitalize font-semibold text-gray-900 font-serif">
+        {author}
+      </h3>
+      <p className="text-xs text-justify lowercase text-gray-600 pb-2 font-serif">
+        {description}
+      </p>
+      <div className="flex gap-1 text-xs text-gray-500 border-b pb-2 font-serif">
         <p className="">publish year:</p>
         <p>{publishYear}</p>
       </div>
@@ -19,7 +23,7 @@ const Card = ({ title, author, publishYear, description, id }) => {
         <Link to={`/book/edit/${id}`}>
           <div className="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
             <MdEdit className="text-green-700" />
-            <button className="font-semibold text-xs text-green-700">
+            <button className="font-semibold text-sm text-green-700">
               Edit
             </button>
           </div>

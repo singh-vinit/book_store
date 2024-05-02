@@ -5,33 +5,38 @@ import Button from "../components/Button";
 const DeleteBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  function handleDelete() {
-    axios.delete(`http://localhost:4000/api/v1/books/${id}`);
+  function deleteHandler() {
+    axios.delete(
+      `https://api-book-store-9spu.onrender.com/api/v1/books/delete/${id}`
+    );
     navigate("/");
   }
-  function handleCancel() {
+  function cancelHandler() {
     navigate("/");
   }
   return (
     <>
       <Button />
-      <div className="shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex-col w-1/2 mx-auto my-16 p-4">
-        <p className="capitalize text-rose-500 text-lg text-center mb-6">
-          sure, you want to delete it from collection
-        </p>
-        <div className="flex justify-between">
-          <button
-            className="bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white w-16 border border-green-500 hover:border-transparent rounded uppercase"
-            onClick={handleCancel}
-          >
-            no
-          </button>
-          <button
-            className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white w-16 border border-red-500 hover:border-transparent rounded uppercase"
-            onClick={handleDelete}
-          >
-            yes
-          </button>
+      <div className="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden">
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">Delete Confirmation</div>
+          <p className="text-gray-700 mb-4">
+            Are you sure you want to delete this item?
+          </p>
+          <div className="flex justify-end">
+            <button
+              onClick={deleteHandler}
+              className="px-4 py-2 bg-red-500 text-white rounded-md mr-2 hover:bg-red-600"
+            >
+              Delete
+            </button>
+            <button
+              onClick={cancelHandler}
+              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </>

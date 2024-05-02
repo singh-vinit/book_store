@@ -3,52 +3,61 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "../components/Button";
+import Skeleton from "../components/Skeleton";
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
+  const [isFetching, setIsFetching] = useState(false);
   const { id } = useParams();
   useEffect(() => {
+    setIsFetching(true);
     axios
-      .get(`http://localhost:4000/api/v1/books/${id}`)
-      .then((response) => setBook(response.data.data))
+      .get(`https://api-book-store-9spu.onrender.com/api/v1/books/get/${id}`)
+      .then((response) => {
+        setBook(response.data.data);
+        setIsFetching(false);
+      })
       .catch((err) => console.log(err));
   }, []);
   return (
     <>
       <Button />
-      <div className="border mx-auto my-16 rounded-md pl-4 py-4 w-1/2 flex flex-col gap-y-4 shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
-        <div className="flex">
-          <h1 className="text-xs font-semibold uppercase basis-1/3 text-center">
-            id :
-          </h1>
-          <h1 className="text-xs capitalize">{book._id}</h1>
-        </div>
-        <div className="flex">
-          <h1 className="text-xs font-semibold uppercase basis-1/3 text-center">
-            title :
-          </h1>
-          <h1 className="text-xs capitalize">{book.title}</h1>
-        </div>
-        <div className="flex">
-          <h1 className="text-xs font-semibold uppercase basis-1/3 text-center">
-            author :
-          </h1>
-          <h1 className="text-xs capitalize">{book.author}</h1>
-        </div>
-        <div className="flex">
-          <h1 className="text-xs font-semibold uppercase basis-1/3 text-center">
-            publishYear :
-          </h1>
-          <h1 className="text-xs capitalize">{book.publishYear}</h1>
-        </div>
-        <div className="flex">
-          <h1 className="text-xs font-semibold uppercase basis-1/3 text-center">
-            description :
-          </h1>
-          <p className="text-xs capitalize basis-1/2 text-justify">
-            {book.description}
-          </p>
-        </div>
+      <div className="max-w-sm md:max-w-lg mx-auto bg-white shadow-lg border-2 rounded-md overflow-hidden">
+        {isFetching ? (
+          <Skeleton />
+        ) : (
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">Book Information</div>
+            <div className="mb-2">
+              <span className="text-gray-700 mr-1">Book ID:</span>
+              <span className="text-gray-900 font-medium text-sm">
+                {book._id}
+              </span>
+            </div>
+            <div className="mb-2">
+              <span className="text-gray-700 mr-1">Author:</span>
+              <span className="text-gray-900 font-medium text-sm">
+                {book.author}
+              </span>
+            </div>
+            <div className="mb-2">
+              <span className="text-gray-700 mr-1">Title:</span>
+              <span className="text-gray-900 font-medium text-sm">
+                {book.title}
+              </span>
+            </div>
+            <div className="mb-2">
+              <span className="text-gray-700 mr-1">Publish Year:</span>
+              <span className="text-gray-900 font-medium text-sm">
+                {book.publishYear}
+              </span>
+            </div>
+            <div className="mb-2">
+              <span className="text-gray-700">Description:</span>
+              <p className="text-gray-900 text-sm">{book.description}</p>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
