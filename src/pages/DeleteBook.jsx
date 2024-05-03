@@ -1,15 +1,21 @@
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { toast } from "react-toastify";
 
 const DeleteBook = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   function deleteHandler() {
-    axios.delete(
-      `https://api-book-store-9spu.onrender.com/api/v1/books/delete/${id}`
-    );
-    navigate("/");
+    axios
+      .delete(
+        `https://api-book-store-9spu.onrender.com/api/v1/books/delete/${id}`
+      )
+      .then(() => {
+        toast.error("deleted successfully!");
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   }
   function cancelHandler() {
     navigate("/");
