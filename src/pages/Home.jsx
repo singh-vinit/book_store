@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     setIsFetching(true);
     axios
-      .get("https://api-book-store-9spu.onrender.com/api/v1/books/all")
+      .get("/api/v1/books/all")
       .then((response) => {
         setBooks(response.data.data);
         setIsFetching(false);

@@ -9,7 +9,7 @@ const DeleteBook = () => {
   function deleteHandler() {
     axios
       .delete(
-        `https://api-book-store-9spu.onrender.com/api/v1/books/delete/${id}`
+        `/v1/books/delete/${id}`
       )
       .then(() => {
         toast.error("deleted successfully!");

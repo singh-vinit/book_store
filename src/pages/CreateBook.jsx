@@ -16,7 +16,7 @@ const CreateBook = () => {
     setIsLoading(true);
     const data = { title, author, publishYear, description };
     axios
-      .post("https://api-book-store-9spu.onrender.com/api/v1/books/new", data)
+      .post("/api/v1/books/new", data)
       .then(() => {
         setIsLoading(false);
         toast.success("creates successfully!");
