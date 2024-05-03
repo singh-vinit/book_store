@@ -5,7 +5,6 @@ import CreateBook from "./pages/CreateBook";
 import EditBook from "./pages/EditBook";
 import DeleteBook from "./pages/DeleteBook";
 import ShowBook from "./pages/ShowBook";
-import SignUp from "./pages/SignUp";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,7 +20,6 @@ const App = () => {
           <Route path="/book/edit/:id" element={<EditBook />} />
           <Route path="/book/delete/:id" element={<DeleteBook />} />
           <Route path="/book/show/:id" element={<ShowBook />} />
-          <Route path="/user/register" element={<SignUp />} />
         </Routes>
       </Router>
     </>

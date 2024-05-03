@@ -33,7 +33,7 @@ const Home = () => {
           {isFetching ? (
             <Skeleton />
           ) : (
-            books.map((book) => {
+            books?.map((book) => {
               return (
                 <Card
                   key={book._id}
