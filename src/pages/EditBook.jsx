@@ -12,7 +12,7 @@ const EditBook = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`/api/v1/books/get/${id}`)
+      .get(`https://api-book-store-9spu.onrender.com/api/v1/books/get/${id}`)
       .then((response) => {
         const book = response.data.data;
         setTitle(book.title);

@@ -12,7 +12,7 @@ const ShowBook = () => {
   useEffect(() => {
     setIsFetching(true);
     axios
-      .get(`/api/v1/books/get/${id}`)
+      .get(`https://api-book-store-9spu.onrender.com/api/v1/books/get/${id}`)
       .then((response) => {
         setBook(response.data.data);
         setIsFetching(false);
