@@ -8,7 +8,7 @@ const DeleteBook = () => {
   const navigate = useNavigate();
   function deleteHandler() {
     axios
-      .delete(`https://api-book-store-9spu.onrender.com/api/v1/books/delete/${id}`)
+      .delete(`https://api-book-store-5qj7.onrender.com/api/v1/books/delete/${id}`)
       .then(() => {
         toast.error("deleted successfully!");
         navigate("/");

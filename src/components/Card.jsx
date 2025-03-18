@@ -5,41 +5,41 @@ import { Link } from "react-router-dom";
 
 const Card = ({ title, author, publishYear, description, id }) => {
   return (
-    <div className="flex flex-col bg-white h-max rounded-md py-3 px-2 border-2">
-      <h3 className="text-center capitalize font-bold text-xl text-gray-800 pb-2 font-mono">
+    <div className="md:w-[450px] flex flex-col h-max rounded-md p-4 border border-blue-200 hover:shadow-md hover:shadow-blue-200 hover:-translate-x-2 transition-all duration-200 ease-in">
+      <h3 className="text-left capitalize font-medium text-xl text-gray-800 pb-2 font-mono">
         {title}
       </h3>
-      <h3 className="text-sm capitalize font-semibold text-gray-900 font-serif">
+      <h3 className="text-lg capitalize font-medium text-gray-600 font-serif">
         {author}
       </h3>
-      <p className="text-xs text-justify lowercase text-gray-600 pb-2 font-serif">
-        {description}
-      </p>
-      <div className="flex gap-1 text-xs text-gray-500 border-b pb-2 font-serif">
+      <div className="flex gap-1 text-sm font-bold text-gray-600 font-serif">
         <p className="">publish year:</p>
         <p>{publishYear}</p>
       </div>
+      <p className="text-[16px] font-light text-justify lowercase text-gray-500 pb-2 font-serif my-2 border-b-2">
+        {description}
+      </p>
       <div className="flex justify-around items-center pt-3">
         <Link to={`/book/edit/${id}`}>
-          <div className="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
-            <MdEdit className="text-green-700" />
-            <button className="font-semibold text-sm text-green-700">
+          <div className="flex items-center gap-x-1 text-slate-600 group transition-all duration-300 ease-in-out">
+            <MdEdit className="group-hover:text-blue-600 group-hover:scale-105" />
+            <button className="font-medium text-sm group-hover:text-blue-600 ">
               Edit
             </button>
           </div>
         </Link>
         <Link to={`/book/delete/${id}`}>
-          <div className="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
-            <MdDelete className="text-red-700" />
-            <button className="font-semibold text-xs text-red-700">
+          <div className="flex items-center gap-x-1 text-slate-600 group transition-all duration-300 ease-in-out">
+            <MdDelete className="group-hover:text-blue-600 group-hover:scale-105" />
+            <button className="font-medium text-sm group-hover:text-blue-600 group-hover:scale-105">
               Delete
             </button>
           </div>
         </Link>
         <Link to={`/book/show/${id}`}>
-          <div className="flex gap-2 text-gray-600 hover:scale-110 duration-200 hover:cursor-pointer">
-            <AiOutlineInfoCircle className="text-yellow-500" />
-            <button className="font-semibold text-xs text-yellow-500">
+          <div className="flex items-center gap-x-1 text-slate-600 group transition-all duration-300 ease-in-out">
+            <AiOutlineInfoCircle className="group-hover:text-blue-600 group-hover:scale-105" />
+            <button className="font-medium text-sm group-hover:text-blue-600 group-hover:scale-105 ">
               Details
             </button>
           </div>
